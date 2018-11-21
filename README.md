@@ -9,7 +9,6 @@ This is an unofficial [Terraform](https://www.terraform.io) module which creates
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | domain\_name | The domain name to setup DNS records for like `example.com` | string | - | yes |
-| create\_mail\_cname | Determines if the root mail cname should exist directed at FastMail. | string | `false` | no |
 | create\_root\_domain\_txt | Determines if the root domain should have a TXT record. | string | `true` | no |
 | record\_ttl | Record TTLS | string | `3600` | no |
 
@@ -23,9 +22,8 @@ resource "aws_route53_zone" "example" {
 }
 
 module "example_fastmail" {
-  source = "github.com/bluk/terraform-aws-fastmail-dns"
+  source = "github.com/joshdurbin/terraform-aws-fastmail-dns"
 
   domain_name = "example.com"
-  route53_zone_id = "${aws_route53_zone.example.zone_id}"
 }
 ```

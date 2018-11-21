@@ -219,15 +219,3 @@ resource "aws_route53_record" "fm3_domainkey_cname" {
     "fm3.${var.domain_name}.dkim.fmhosted.com",
   ]
 }
-
-resource "aws_route53_record" "mail_cname" {
-  count   = "${var.create_root_domain_txt ? 1 : 0}"
-  zone_id = "${data.aws_route53_zone.zone.id}"
-  name    = "mail"
-  type    = "CNAME"
-  ttl     = "${var.record_ttl}"
-
-  records = [
-    "www.fastmail.com",
-  ]
-}
